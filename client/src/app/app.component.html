@@ -1,7 +1,16 @@
-<h1>{{title}}</h1>
-
-<ul>
-    <li *ngFor="let usuario of usuarios">
-        {{usuario.id}} - {{usuario.nome}} - {{usuario.email}}
-    </li>
-</ul>
+<p-table [columns]="cols" [value]="usuarios" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{ col.header }}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                {{ rowData[col.field] }}
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
