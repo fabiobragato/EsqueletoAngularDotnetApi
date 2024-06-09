@@ -3,6 +3,7 @@ using System.Text;
 using API.Data;
 using API.DTOs;
 using API.Entities;
+using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,14 +12,16 @@ namespace API.Controllers
     public class ContaController : DryController
     {
         private readonly DataContext context;
+        private readonly ITokenService tokenService;
 
-        public ContaController(DataContext context)
+        public ContaController(DataContext context, ITokenService tokenService)
         {
             this.context = context;
+            this.tokenService = tokenService;
         }
 
         [HttpPost("registrar")] // rota: api/conta/registrar
-        public async Task<ActionResult<Usuario>> Registrar(RegistroDto registroDto)
+        public async Task<ActionResult<UsuarioDto>> Registrar(RegistroDto registroDto)
         {
             if (await UsuarioExiste(registroDto.Username)) return BadRequest("Usuário já está sendo utilizado. Tente novamente!");
 
@@ -33,11 +36,15 @@ namespace API.Controllers
 
             context.Usuarios.Add(novoUsuario);
             await context.SaveChangesAsync();
-            return novoUsuario;
+            return new UsuarioDto
+            {
+                Username = novoUsuario.Username,
+                Token = tokenService.CreateToken(novoUsuario)
+            };
         }
 
         [HttpPost("login")] // rota: api/conta/login
-        public async Task<ActionResult<Usuario>> Login(LoginDto loginDto) 
+        public async Task<ActionResult<UsuarioDto>> Login(LoginDto loginDto)
         {
             var usuario = await context.Usuarios.SingleOrDefaultAsync(x => x.Username == loginDto.Username);
 
@@ -52,7 +59,11 @@ namespace API.Controllers
                 if (computedHash[i] != usuario.PasswordHash[i]) return Unauthorized("Senha inválida!");
             }
 
-            return usuario;
+            return new UsuarioDto
+            {
+                Username = usuario.Username,
+                Token = tokenService.CreateToken(usuario)
+            };
 
         }
 
