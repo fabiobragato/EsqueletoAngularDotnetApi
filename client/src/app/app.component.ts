@@ -1,5 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ContaService } from './_services/conta.service';
+import { Usuario } from './_models/usuario';
+import { TranslateService } from '@ngx-translate/core';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -9,24 +13,28 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   title = "Angular 10 CRUD Application";
-  usuarios: any;
   cols: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private contaService: ContaService,
+    private translate: TranslateService,
+    private config: PrimeNGConfig
+  ) {
+    this.translate.setDefaultLang('pt');
+    this.translate.use('pt');
+    this.translate.get('primeng').subscribe(res => this.config.setTranslation(res));
+  }
 
   ngOnInit(): void {
-    this.http.get<any>('https://localhost:5001/api/Usuarios').subscribe({
-      next: response => {
-        this.usuarios = response;
-        this.cols = [
-          { field: 'id', header: 'ID' },
-          { field: 'nome', header: 'Nome' },
-          { field: 'email', header: 'E-mail' }
-        ];
-      },
-      error: error => console.error(error),
-      complete: () => console.log('Request completed')
-    });
+    this.setCurrentUser();
+  }
+
+  setCurrentUser() {
+    const usuarioString = localStorage.getItem('usuario');
+    if (!usuarioString) return;
+    const usuario: Usuario = JSON.parse(usuarioString);
+    this.contaService.setCurrentUser(usuario);
   }
 
 }

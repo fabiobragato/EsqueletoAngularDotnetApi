@@ -1,0 +1,8 @@
+{
+    "primeng": {
+        "weak": "Fraca",
+        "medium": "Média",
+        "strong": "Forte",
+        "passwordPrompt": ""
+    }
+}
