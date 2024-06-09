@@ -5,9 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
-[ApiController]
-[Route("api/[controller]")] // Exemplo de rota: https://localhost/api/usuarios
-public class UsuariosController : ControllerBase
+public class UsuariosController : DryController
 {
     private readonly DataContext context;
 

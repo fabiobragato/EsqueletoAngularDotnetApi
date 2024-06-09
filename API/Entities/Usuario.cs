@@ -2,10 +2,12 @@
 
 public class Usuario
 {
-    public int id { get; set; } // Por default, o entity framework entende que essa propriedade é uma chave primária
+    public int Id { get; set; } // Por default, o entity framework entende que essa propriedade é uma chave primária
 
-    public string nome { get; set; }
+    public string Username { get; set; }
 
-    public string email { get; set; }
-    
+    public byte[] PasswordHash { get; set; }
+
+    public byte[] PasswordSalt { get; set; }
+
 }
