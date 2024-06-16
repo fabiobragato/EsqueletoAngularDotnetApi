@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")] // Exemplo de rota: https://localhost/api/usuarios
+    [Route("[controller]")] // Exemplo de rota: https://localhost/apis/usuarios
     public class DryController : ControllerBase
     {
-
     }
 }

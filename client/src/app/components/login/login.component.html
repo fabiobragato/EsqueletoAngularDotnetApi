@@ -1,0 +1,82 @@
+<div class="login-component">
+    <div class="container" id="container" [ngClass]="{'active': isActive}">
+        <div class="form-container sign-up">
+            <form [formGroup]="registroForm" (ngSubmit)="registro()">
+                <h1>Registrar</h1>
+                <div class="input-container">
+                    <input type="text" id="emailRegistro" pInputText placeholder="E-mail" formControlName="email">
+                    <p-password id="senhaRegistro" [feedback]="false" [toggleMask]="true" placeholder="Digite a senha"
+                        formControlName="senha">
+                    </p-password>
+                    <p-password id="confirmarSenhaRegistro" [feedback]="false" [toggleMask]="true"
+                        placeholder="Confirme a senha" formControlName="confirmarSenha">
+                    </p-password>
+                    <p-inputMask mask="(99) 99999-9999" type="text" id="celularRegistro" placeholder="Celular"
+                        formControlName="celular" class="celular-mask" />
+                </div>
+                <div class="small-container">
+                    <small [ngClass]="{'text-ok': emailValido()}">* E-mail válido <i class="pi pi-check"
+                            [ngClass]="{'icon-ok': emailValido()}" style="font-size: 0.7rem; display: none;"></i>
+                    </small>
+                    <small [ngClass]="{'text-ok': senhaTemMinimoSeisCaracteres()}">* Senha com no mínimo 6 caracteres <i
+                            class="pi pi-check" [ngClass]="{'icon-ok': senhaTemMinimoSeisCaracteres()}"
+                            style="font-size: 0.7rem; display: none;"></i>
+                    </small>
+                    <small [ngClass]="{'text-ok': senhasIguais()}">* Senha igual a senha de confirmação <i
+                            class="pi pi-check" [ngClass]="{'icon-ok': senhasIguais()}"
+                            style="font-size: 0.7rem; display: none;"></i></small>
+                    <small [ngClass]="{'text-ok': celularValido()}">* Celular válido <i class="pi pi-check"
+                            [ngClass]="{'icon-ok': celularValido()}"
+                            style="font-size: 0.7rem; display: none;"></i></small>
+                </div>
+                <small [ngClass]="{'text-ok': emailValido()}" style="margin-top: -10px !important; display: none;">*
+                    E-mail válido <i class="pi pi-check" [ngClass]="{'icon-ok': emailValido()}"
+                        style="font-size: 0.7rem; display: none;"></i>
+                </small>
+                <small [ngClass]="{'text-ok': senhaTemMinimoSeisCaracteres()}" style="display: none;">* Senha com no
+                    mínimo 6 caracteres <i class="pi pi-check" [ngClass]="{'icon-ok': senhaTemMinimoSeisCaracteres()}"
+                        style="font-size: 0.7rem; display: none;"></i>
+                </small>
+                <small [ngClass]="{'text-ok': senhasIguais()}" style="display: none;">* Senha igual a senha de
+                    confirmação <i class="pi pi-check" [ngClass]="{'icon-ok': senhasIguais()}"
+                        style="font-size: 0.7rem; display: none;"></i></small>
+                <small [ngClass]="{'text-ok': celularValido()}" style="display: none;">* Celular válido <i
+                        class="pi pi-check" [ngClass]="{'icon-ok': celularValido()}"
+                        style="font-size: 0.7rem; display: none;"></i></small>
+                <button [disabled]="registroForm.status !== 'VALID'">Cadastrar</button>
+                <a href="#" class="logar-responsivo" (click)="toggleActive(false)" style="color: #8f41de;">Já possuí
+                    cadastro? Logue
+                    agora mesmo!</a>
+            </form>
+
+        </div>
+
+        <div class="form-container sign-in">
+            <form [formGroup]="loginForm" autocomplete="off">
+                <h1>Entrar</h1>
+                <input type="text" id="email" pInputText placeholder="E-mail" formControlName="email">
+                <p-password [feedback]="false" [toggleMask]="true" placeholder="Digite a senha"
+                    formControlName="senha"></p-password>
+                <a href="#">Esqueceu sua senha?</a>
+                <a href="#" class="registrar-responsivo" (click)="toggleActive(true)" style="color: #8f41de;">Não possuí
+                    cadastro? Registre-se
+                    agora mesmo!</a>
+                <button (click)="login()">Entrar</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Bem vindo de volta!</h1>
+                    <p>Entre com seu e-mail e senha cadastrados para acessar todas as funcionalidades do site</p>
+                    <button class="hidden" id="login" (click)="toggleActive(false)">Entrar</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Quer saber mais?</h1>
+                    <p>Registre-se com seus dados pessoais para utilizar todas as funcionalidades do site</p>
+                    <button class="hidden" id="register" (click)="toggleActive(true)">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

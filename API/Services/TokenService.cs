@@ -19,7 +19,7 @@ namespace API.Services
         public string CreateToken(Usuario usuario)
         {
             var claims = new List<Claim> {
-                new Claim(JwtRegisteredClaimNames.NameId, usuario.Username)
+                new Claim(JwtRegisteredClaimNames.NameId, usuario.Email)
             };
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ContaService } from './_services/conta.service';
-import { Usuario } from './_models/usuario';
+import { ContaService } from './services/conta.service';
+import { Usuario } from './models/usuario';
 import { TranslateService } from '@ngx-translate/core';
 import { PrimeNGConfig } from 'primeng/api';
 
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private contaService: ContaService,
+    public contaService: ContaService,
     private translate: TranslateService,
     private config: PrimeNGConfig
   ) {

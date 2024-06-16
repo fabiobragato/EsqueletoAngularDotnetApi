@@ -1,3 +1,8 @@
-<div class="centered">
+<!-- Usuários não logados -->
+<p-toast position="top-center"></p-toast>
+<div *ngIf="!(contaService.currentUser$ | async)" class="centered">
     <app-login></app-login>
 </div>
+
+<!-- Usuários logados -->
+<app-menu-lateral *ngIf="(contaService.currentUser$ | async)"></app-menu-lateral>

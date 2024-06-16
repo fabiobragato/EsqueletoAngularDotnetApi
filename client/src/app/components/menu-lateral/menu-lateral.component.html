@@ -1,0 +1,15 @@
+<p-sidebar [(visible)]="visible" [baseZIndex]="10000">
+    <h3>Menu</h3>
+    <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/about">About</a></li>
+        <li><a routerLink="/contact">Contact</a></li>
+        <li><a href="#" (click)="loggout()">
+                <i class="pi pi-power-off" style="margin-right: 10px;"></i>Logout
+            </a>
+        </li>
+    </ul>
+</p-sidebar>
+<button (click)="visible = true" class="p-button p-component p-button-icon-only">
+    <i class="pi pi-bars"></i>
+</button>

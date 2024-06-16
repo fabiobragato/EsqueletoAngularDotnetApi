@@ -5,9 +5,18 @@ namespace API.DTOs
     public class RegistroDto
     {
         [Required]
-        public string Username { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        [MinLength(6)]
+        public string Senha { get; set; }
+
+        [Required]
+        [MinLength(14)]
+        [MaxLength(15)]
+        public string Celular { get; set; }
+
+        public bool EhAdmin { get; set; } = false;
     }
 }
