@@ -6,7 +6,7 @@
                 <div class="input-container">
                     <input type="text" id="emailRegistro" pInputText placeholder="E-mail" formControlName="email">
                     <p-password id="senhaRegistro" [feedback]="false" [toggleMask]="true" placeholder="Digite a senha"
-                        formControlName="senha">
+                        formControlName="senha" class="ng-invalid ng-dirty">
                     </p-password>
                     <p-password id="confirmarSenhaRegistro" [feedback]="false" [toggleMask]="true"
                         placeholder="Confirme a senha" formControlName="confirmarSenha">
@@ -15,7 +15,7 @@
                         formControlName="celular" class="celular-mask" />
                 </div>
                 <div class="small-container">
-                    <small [ngClass]="{'text-ok': emailValido()}">* E-mail válido <i class="pi pi-check"
+                    <small [ngClass]="{'text-ok': emailValido()}">* E-mail obrigatório <i class="pi pi-check"
                             [ngClass]="{'icon-ok': emailValido()}" style="font-size: 0.7rem; display: none;"></i>
                     </small>
                     <small [ngClass]="{'text-ok': senhaTemMinimoSeisCaracteres()}">* Senha com no mínimo 6 caracteres <i
@@ -25,28 +25,11 @@
                     <small [ngClass]="{'text-ok': senhasIguais()}">* Senha igual a senha de confirmação <i
                             class="pi pi-check" [ngClass]="{'icon-ok': senhasIguais()}"
                             style="font-size: 0.7rem; display: none;"></i></small>
-                    <small [ngClass]="{'text-ok': celularValido()}">* Celular válido <i class="pi pi-check"
+                    <small [ngClass]="{'text-ok': celularValido()}">* Celular obrigatório <i class="pi pi-check"
                             [ngClass]="{'icon-ok': celularValido()}"
                             style="font-size: 0.7rem; display: none;"></i></small>
                 </div>
-                <small [ngClass]="{'text-ok': emailValido()}" style="margin-top: -10px !important; display: none;">*
-                    E-mail válido <i class="pi pi-check" [ngClass]="{'icon-ok': emailValido()}"
-                        style="font-size: 0.7rem; display: none;"></i>
-                </small>
-                <small [ngClass]="{'text-ok': senhaTemMinimoSeisCaracteres()}" style="display: none;">* Senha com no
-                    mínimo 6 caracteres <i class="pi pi-check" [ngClass]="{'icon-ok': senhaTemMinimoSeisCaracteres()}"
-                        style="font-size: 0.7rem; display: none;"></i>
-                </small>
-                <small [ngClass]="{'text-ok': senhasIguais()}" style="display: none;">* Senha igual a senha de
-                    confirmação <i class="pi pi-check" [ngClass]="{'icon-ok': senhasIguais()}"
-                        style="font-size: 0.7rem; display: none;"></i></small>
-                <small [ngClass]="{'text-ok': celularValido()}" style="display: none;">* Celular válido <i
-                        class="pi pi-check" [ngClass]="{'icon-ok': celularValido()}"
-                        style="font-size: 0.7rem; display: none;"></i></small>
                 <button [disabled]="registroForm.status !== 'VALID'">Cadastrar</button>
-                <a href="#" class="logar-responsivo" (click)="toggleActive(false)" style="color: #8f41de;">Já possuí
-                    cadastro? Logue
-                    agora mesmo!</a>
             </form>
 
         </div>
@@ -58,9 +41,6 @@
                 <p-password [feedback]="false" [toggleMask]="true" placeholder="Digite a senha"
                     formControlName="senha"></p-password>
                 <a href="#">Esqueceu sua senha?</a>
-                <a href="#" class="registrar-responsivo" (click)="toggleActive(true)" style="color: #8f41de;">Não possuí
-                    cadastro? Registre-se
-                    agora mesmo!</a>
                 <button (click)="login()">Entrar</button>
             </form>
         </div>

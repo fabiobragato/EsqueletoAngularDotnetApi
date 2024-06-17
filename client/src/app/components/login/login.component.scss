@@ -232,7 +232,6 @@
     font-weight: 700;
 }
 
-// Responsivo
 ::ng-deep .p-inputtext {
     background-color: #eee;
     border: none;
@@ -244,77 +243,15 @@
     box-sizing: border-box;
     outline: none;
     min-width: 300px;
-
-    @media (max-width: 600px) {
-        min-width: 320px;
-    }
 }
 
-.registrar-responsivo {
-    display: none;
+input.ng-invalid.ng-touched {
+    border: 0.5px solid rgba(219, 47, 47, 0.75);
+    box-shadow: 0 0 5px rgb(219, 47, 47, 0.75);
 }
 
-.logar-responsivo {
-    display: none;
-}
-
-@media screen and (max-width: 600px) {
-    .toggle-container {
-        display: none;
-    }
-
-    .container {
-        background-color: #fff;
-        border-radius: 30px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-        position: relative;
-        overflow: hidden;
-        width: 400px;
-        max-width: 100%;
-        min-height: 480px;
-    }
-
-    .sign-in {
-        width: 100%;
-    }
-
-    .sign-up {
-        position: absolute;
-        top: 0%;
-        left: -25%;
-        transform: translate(-50%, -50%);
-        opacity: 0;
-        z-index: 1;
-    }
-
-    .container.active .sign-up {
-        opacity: 1;
-        z-index: 5;
-    }
-
-    .registrar-responsivo {
-        display: inline-block;
-        margin-top: 10px !important;
-        width: 300px !important;
-
-        &:hover {
-            color: $main-color;
-        }
-    }
-
-    .logar-responsivo {
-        display: inline-block;
-        margin-top: 20px !important;
-        width: 250px !important;
-    }
-
-    .small-container {
-        display: none;
-    }
-
-    small {
-        display: inline-block !important;
-        margin-top: 5px !important;
-        width: 250px !important;
-    }
+/* Utilize um seletor mais específico para garantir que o estilo seja aplicado corretamente */
+.p-password.ng-invalid .p-inputtext {
+    box-shadow: 0 0 10px red;
+    /* Efeito de sombra vermelha */
 }
